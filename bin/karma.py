@@ -77,7 +77,7 @@ def main():
         f = open('%s.json' % filename, 'w')
         f.write(output)
         f.close()
-        print(': The file %s.json was created.' % filename)
+        print(':{} The file {}.json was created.{}'.format(GREEN, filename, RESET))
 
 
 if __name__ == "__main__":
