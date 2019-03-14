@@ -1,13 +1,18 @@
-# karma
-API pwndb - [Demo](https://www.youtube.com/watch?v=tL-kYkmudz4)
+## karma
+**API: `pwndb2am4tzkvold (dot) onion`**
 
-Karma is a tool written in [python3](https://www.python.org) for the search of emails and passwords on the site: `pwndb2am4tzkvold (dot) onion`
+![version](https://img.shields.io/badge/version-20.02.19-lightgrey.svg?style=flat-square)
+[![demo](https://img.shields.io/badge/demo-video-lightgrey.svg?style=flat-square)](https://www.youtube.com/watch?v=tL-kYkmudz4)
+
+Find leaked emails with your passwords.
 
 ---
 
 ### Install
 ```
 sudo apt install tor python3 python3-pip
+sudo service tor start
+
 git clone https://github.com/decoxviii/karma.git ; cd karma
 sudo -H pip3 install -r requirements.txt
 python3 bin/karma.py --help
