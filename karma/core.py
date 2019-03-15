@@ -8,6 +8,12 @@ import os
 # Colors
 GREEN, RED, RESET = '\033[92m', '\033[91m', '\033[0m'
 
+try:
+    import requests
+except Exception as e:
+    print('Error:', e)
+    print("Please install the requirements:\n\t$ sudo -H pip3 install -r requirements.txt")
+    sys.exit(1)
 
 class pwndb(object):
 
@@ -40,7 +46,7 @@ class pwndb(object):
         try:
             req = self.session.post(self.domain, data=data)
         except Exception as e:
-            print('{}E:{}{}'.format(RED, e, RESET))
+            print('{}Error: {}{}'.format(RED, e, RESET))
             sys.exit(2)
         
         return req.text
@@ -49,7 +55,7 @@ class pwndb(object):
     def response_parser(self, response):
         """ Parse pwndb response """
 
-        print("\n:{} Analyzing response{}".format(GREEN, RESET))
+        print("\n{}> Analyzing response{}".format(GREEN, RESET))
 
         if not response:
             return ''
@@ -72,14 +78,14 @@ class pwndb(object):
         
         regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
         if re.match(regex, target):
-            print(':{} Request email: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
+            print('{}> Request email: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
 
             self.data['luser']  = target.split('@')[0]
             self.data['domain'] = target.split('@')[1]
 
             return self.get_request(self.data)
         
-        print(':{} Invalid email: {}{}\033[J'.format(RED, target, RESET))
+        print('{}> Invalid email: {}{}\033[J'.format(RED, target, RESET))
         return ""
 
     
@@ -88,14 +94,14 @@ class pwndb(object):
 
         regex = r"(^[a-zA-Z0-9_.+%-]+$)"
         if re.match(regex, target):
-            print(':{} Request local-part: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
+            print('{}> Request local-part: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
 
             self.data['luseropr'] = 1
             self.data['luser'] = target
 
             return self.get_request(self.data)
 
-        print(':{} Invalid local-part: {}{}\033[J'.format(RED, target, RESET))
+        print('{}> Invalid local-part: {}{}\033[J'.format(RED, target, RESET))
         return ""
 
 
@@ -104,21 +110,21 @@ class pwndb(object):
 
         regex = r"(^[a-zA-Z0-9-%]+\.[a-zA-Z0-9-.%]+$)"
         if re.match(regex, target):
-            print(':{} Request domain: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
+            print('{}> Request domain: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
 
             self.data['domainopr'] = 1
             self.data['domain'] = target
 
             return self.get_request(self.data)
 
-        print(':{} Invalid domain: {}{}\033[J'.format(RED, target, RESET))
+        print('{}> Invalid domain: {}{}\033[J'.format(RED, target, RESET))
         return ""
 
 
     def search_password(self, target):
         """ Requests with password """
         
-        print(':{} Request password: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
+        print('{}> Request password: {}{}\033[J'.format(GREEN, target, RESET), end='\r')
             
         self.data['submitform'] = 'pw'
         self.data['password'] = target
@@ -156,24 +162,21 @@ class pwndb(object):
             lines = open(target, 'r').readlines()
             for item in lines:
                 item = item.strip('\n')
-                
                 try:
                     if opt_search:
                         response += self.choose_function(item)
-
                     if opt_target:
                         response += self.email_request(item)
-
                 except KeyboardInterrupt:
-                    print('\n:{} break{}'.format(RED, RESET))
+                    print('\n{}> break{}'.format(RED, RESET))
                     break
-                
+
             return self.response_parser(response)
         
         if opt_search:
             response = self.choose_function(target)
-
         if opt_target and target:
             response = self.email_request(target)
         
         return self.response_parser(response)
+
