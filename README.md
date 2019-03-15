@@ -6,6 +6,8 @@
 
 Find leaked emails with your passwords.
 
+![screenshot](screenshot.png)
+
 ---
 
 ### Install
