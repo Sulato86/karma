@@ -17,7 +17,7 @@ Usage:
 
 Options:
     -o --output         Save output in json format.
-    --proxy=<proxy>     Set Tor proxy [default: 127.0.0.1:9050].
+    --proxy=<proxy>     Set Tor proxy [default: localhost:9050].
     -h --help           Show this screen.
     --version           Show version.
 """
