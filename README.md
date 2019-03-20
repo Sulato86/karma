@@ -3,6 +3,7 @@
 
 ![version](https://img.shields.io/badge/version-15.03.19-lightgrey.svg?style=flat-square)
 [![demo](https://img.shields.io/badge/demo-video-lightgrey.svg?style=flat-square)](https://www.youtube.com/watch?v=tL-kYkmudz4)
+[![twitter](https://img.shields.io/badge/Twitter-@decoxviii-blue.svg?style=flat-square)](https://twitter.com/decoxviii)
 
 Find leaked emails with your passwords.
 
