@@ -42,8 +42,8 @@ except ModuleNotFoundError as error:
 
 def print_result_table(result):
     
-    if not result:
-        print('{}> Not results:{}'.format(RED, RESET))
+    if not result or result == '':
+        print('{}> No results found.{}'.format(RED, RESET))
         return None
     
     print('{}> Results:{}\n'.format(GREEN, RESET))
@@ -63,6 +63,8 @@ def print_result_table(result):
         table.add_row(row)                  # add new row to the table
 
     print(table.draw())
+    print('\n{}> {} Results found in {:.2f} segs.{}'.format(
+        GREEN, len(result.keys()), end, RESET ))
 
 
 def generate_json_file(result, filename):
@@ -90,9 +92,6 @@ def main():
     print_result_table(result)                      # print results
     end = time.time() - start                       # get time within the program
     
-    print('\n{}> {} Results found in {:.2f} segs.{}'.format(
-        GREEN, len(result.keys()), end, RESET ))
-
     if args['--output']:
         filename = args['FILENAME']             # get file name 
         generate_json_file(result, filename)    # generate json file with the results

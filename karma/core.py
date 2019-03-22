@@ -55,7 +55,7 @@ class pwndb(object):
     def response_parser(self, response):
         """ Parse pwndb response """
 
-        print("\n{}> Analyzing response{}".format(GREEN, RESET))
+        print("{}> Analyzing response{}".format(GREEN, RESET))
 
         if not response:
             return ''
