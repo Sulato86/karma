@@ -12,12 +12,20 @@ Find leaked emails with your passwords.
 ---
 
 ### Install
-```
+```bash
+# install dependencies (Debian/Ubuntu)
 sudo apt install tor python3 python3-pip
-sudo service tor start
 
-git clone https://github.com/decoxviii/karma.git ; cd karma
+# restart Tor service
+sudo service tor restart
+
+# clone this repository
+git clone https://github.com/decoxviii/karma.git; cd karma
+
+# install python3 requirements
 sudo -H pip3 install -r requirements.txt
+
+# view help
 python3 bin/karma.py --help
 ```
 
