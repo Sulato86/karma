@@ -40,7 +40,7 @@ except ModuleNotFoundError as error:
     sys.exit(1)
 
 
-def print_result_table(result):
+def print_result_table(result, end):
     
     if not result or result == '':
         print('{}> No results found.{}'.format(RED, RESET))
@@ -89,8 +89,8 @@ def main():
     print('{}> Searching{}'.format(GREEN, RESET))
 
     result = pwndb.search_info()                    # start search and get results
-    print_result_table(result)                      # print results
     end = time.time() - start                       # get time within the program
+    print_result_table(result, end)                      # print results
     
     if args['--output']:
         filename = args['FILENAME']             # get file name 
